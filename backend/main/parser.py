@@ -15,7 +15,7 @@ def getGames():
             for move in game.mainline():
                 move_cleaned = ""
                 move = move.san()
-    
+
                 # check if move is castle
                 if move == "O-O":
                     move_cleaned = "O2"
@@ -24,17 +24,17 @@ def getGames():
                     move_cleaned = "O3"
                     continue
                 if "=" in move:
-                    move_cleaned = "="
+                    move_cleaned = "=p"
                     continue
-                
+
                 if move_cleaned == "":
-                
+
                     # check for pawn moved/capture
                     if move[0].islower():
                         move_cleaned += "P"
                     else:
                         move_cleaned += move[0]
-    
+
                     # check for capture or move
                     if "x" in move:
                         move_cleaned += "x"
@@ -46,7 +46,7 @@ def getGames():
                     black.append(move_cleaned)
                 white_move = not white_move
                 #print(move_cleaned)
-    
+
             # checks for who won 1 - white 0 - draw -1 - black
             winner = 0
             res = game.headers["Result"]
@@ -56,9 +56,9 @@ def getGames():
                 winner = -1
             else:
                 winner = 0
-    
+
             games.append((white,black,winner))
-    
+
             game = chess.pgn.read_game(pgn)
         #print(games)
         return games
