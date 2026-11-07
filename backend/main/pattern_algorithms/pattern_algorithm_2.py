@@ -1,24 +1,4 @@
 category_2_patterns = {}
-
-def get_top_winrate_games(num, minimum_games):
-
-    sorted_patterns = []
-
-    for pattern, values in category_1_patterns.items():
-
-        frequency, wins, draws, losses = values
-
-        if frequency < minimum_games:
-            continue
-
-        win_rate = wins / frequency
-
-        sorted_patterns.append(pattern, win_rate, frequency)
-
-    sorted_patterns.sort(key=lambda x: x[1], reverse=True)
-
-    return sorted_patterns[:num]
-
 def find_category_2_pattern(size, result, moves, top_patterns):
 
     added_patterns = set() # unique patterns should only be counted once
