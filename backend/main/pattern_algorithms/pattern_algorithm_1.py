@@ -1,13 +1,12 @@
+from ..parser import getGames
+
 # first move is White's
 
 # category 1 in form (P, R, N, B, Q, K, O, =)
 category_1_patterns = {}
 
-result = 0
-moves = []
-
 # finds category 1 patterns of certain size
-def find_category_1_pattern(size):
+def find_category_1_pattern(size, result, moves):
 
     added_patterns = set() # unique patterns should only be counted once
     number_of_moves = len(moves)
@@ -54,4 +53,7 @@ def find_category_1_pattern(size):
             new_piece = moves[l + size][0]
             pattern[new_piece] = pattern.get(new_piece, 0) + 1
 
-
+games = getGames()
+for game in games:
+    find_category_1_pattern(5,game[2],game[0])
+print(category_1_patterns)
