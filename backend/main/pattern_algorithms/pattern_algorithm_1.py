@@ -1,7 +1,5 @@
 from ..parser import getGames
 
-# first move is White's
-
 # category 1 in form (P, R, N, B, Q, K, O, =)
 category_1_patterns = {}
 
