@@ -8,9 +8,9 @@ def find_category_3_patterns(size,moves,result,cat_2_patterns):
 
     for l in range(number_of_moves - size + 1):
 
-        pattern_key = tuple(move[0] for move in moves[l:l+size])
+        ordered_pattern_key = tuple(move[0] for move in moves[l:l+size])
 
-        if pattern_key not in cat_2_patterns:
+        if ordered_pattern_key not in cat_2_patterns:
             continue
 
         pattern_and_action_key = tuple(moves[l:l+size])
