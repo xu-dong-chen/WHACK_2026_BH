@@ -1,5 +1,5 @@
 category_3_patterns = {}
-def find_category_3_patterns(size,result,moves,cat_2_patterns):
+def find_category_3_patterns(size, result, moves, cat_2_patterns):
     added_pattern_and_actions = set() # unique patterns and actions should only be counted once
     number_of_moves = len(moves)
 
