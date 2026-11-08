@@ -38,6 +38,4 @@ async def uploadFile(file: UploadFile):
         shutil.copyfileobj(file.file, buffer)
 
     results = get_real_patterns()
-    print("hello")
-    print(results)
     return {"results": results}

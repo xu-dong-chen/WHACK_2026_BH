@@ -18,10 +18,6 @@ def get_real_patterns():
     games = getGames()
     training_games, validation_games = split_games(games)
 
-    print("Total games:", len(games))
-    print("Training games:", len(training_games))
-    print("Validation games:", len(validation_games))
-
     for game in training_games:
         find_category_1_patterns(3, game[2], game[0])
     for game in training_games:
@@ -29,17 +25,12 @@ def get_real_patterns():
     for game in training_games:
         find_category_3_patterns(3, game[2], game[0], get_top_winrate_games(5, len(training_games) * 5 // 1000, category_2_patterns, False))
 
-    print("Category 1 patterns:", len(category_1_patterns))
-    print("Category 2 patterns:", len(category_2_patterns))
-    print("Category 3 patterns:", len(category_3_patterns))
     top_patterns = get_top_winrate_games(10, len(training_games) * 5 // 10000, category_3_patterns, False)
 
-    print("Top patterns:", len(top_patterns))
     print(top_patterns)
 
     for game in validation_games:
         find_top_patterns(3, game[2], game[0], top_patterns)
-    print("Validation patterns:", len(new_patterns_and_actions))
     results = []
 
     for pattern, values in list(new_patterns_and_actions.items()):
@@ -56,7 +47,6 @@ def get_real_patterns():
         # results.append([pattern, training_win_rate])
 
     sorted_results = sorted(results, key=lambda x: x[1], reverse=True)
-    print("Results being sent to frontend:")
     for item in sorted_results:
         print(item)
     return sorted_results

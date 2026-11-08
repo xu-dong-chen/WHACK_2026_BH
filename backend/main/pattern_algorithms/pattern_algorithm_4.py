@@ -10,10 +10,6 @@ def find_top_patterns(size, result, moves, top_patterns):
 
         pattern_and_action_key = tuple(moves[l:l+size])
 
-        if l == 0:
-            print("Validation sequence:", pattern_and_action_key)
-            print("Training patterns:", top_patterns)
-            print("Match:", pattern_and_action_key in top_patterns)
         if pattern_and_action_key not in top_patterns:
             continue
 
