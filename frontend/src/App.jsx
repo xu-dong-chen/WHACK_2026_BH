@@ -9,52 +9,44 @@ function App() {
     if (!file) return;
 
     if (!file.name.toLowerCase().endsWith(".pgn")){
-      alert("Please select an image file");
+      alert("Please select an PGN file");
       return;
     }
 		setSelectedFile(file);
 	};
-	const onFileUpload = () => {
+	const onFileUpload = async () => {
+		if (!selectedFile){
+			alert("Please select a PGN file first");
+			return;
+		}
+
 		const formData = new FormData();
-		formData.append(
-			"myFile",
-			selectedFile,
-			selectedFile.name
-		);
-		console.log(selectedFile);
-		axios.post("api/uploadfile", formData);
-	};
-	const fileData = () => {
-		if (selectedFile) {
-			return (
-				<div>
-					<h2>File Details:</h2>
-					<p>File Name: {selectedFile.name}</p>
-					<p>File Type: {selectedFile.type}</p>
-					<p>
-						Last Modified: {selectedFile.lastModifiedDate.toDateString()}
-					</p>
-				</div>
-			);
-		} else {
-			return (
-				<div>
-					<br />
-					<h4>Choose before Pressing the Upload button</h4>
-				</div>
-			);
+		formData.append("file", selectedFile);
+
+		try{
+			const response = await fetch("http://127.0.0.1:8000/upload-file", {
+										method: "POST",
+										body: formData
+									});
+
+			alert("File uploaded")
+		} catch (error){
+			console.error(error)
+			alert("Error with uploading the file")
 		}
 	};
 
 
   return (
     <div>
-    <div className='dataset'>
-				<input type="file" accept=".pgn" onChange={onFileChange} />
-				<button onClick={onFileUpload}>Upload</button>
+    	<div className='dataset'>
+			<input type="file" accept=".pgn" onChange={onFileChange} />
+			<button onClick={onFileUpload}>Upload</button>
 		</div>
-	{fileData()}
-  </div>
+
+		<h1>Top Patterns Found</h1>
+		
+  	</div>
   );
 }
 
