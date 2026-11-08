@@ -1,15 +1,15 @@
-from ..parser import getGames
-from .get_top_win_rates import get_top_winrate_games
-from .pattern_algorithm_2 import find_category_2_patterns
-from .pattern_algorithm_2 import category_2_patterns
-from .pattern_algorithm_3 import find_category_3_patterns
-from .pattern_algorithm_3 import category_3_patterns
+# from ..parser import getGames
+# from .get_top_win_rates import get_top_winrate_games
+# from .pattern_algorithm_2 import find_category_2_patterns
+# from .pattern_algorithm_2 import category_2_patterns
+# from .pattern_algorithm_3 import find_category_3_patterns
+# from .pattern_algorithm_3 import category_3_patterns
 
 # category 1 in form (P, R, N, B, Q, K, O, =)
 category_1_patterns = {}
 
 # finds category 1 patterns of certain size
-def find_category_1_pattern(size, result, moves):
+def find_category_1_patterns(size, result, moves):
 
     added_patterns = set() # unique patterns should only be counted once
     number_of_moves = len(moves)
@@ -56,20 +56,20 @@ def find_category_1_pattern(size, result, moves):
             new_piece = moves[l + size][0]
             pattern[new_piece] = pattern.get(new_piece, 0) + 1
 
-games = getGames()
-for game in games:
-    find_category_1_pattern(5,game[2],game[0])
-print(category_1_patterns)
-print(get_top_winrate_games(5,3,category_1_patterns),False)
+# games = getGames()
+# for game in games:
+#     find_category_1_patterns(5,game[2],game[0])
+# print(category_1_patterns)
+# print(get_top_winrate_games(5,3,category_1_patterns),False)
 
-for game in games:
-    find_category_2_patterns(5,game[2],game[0],get_top_winrate_games(5,3,category_1_patterns))
-print(category_2_patterns)
-print("\npattern 2 : ")
-print(get_top_winrate_games(5,0,category_2_patterns),False)
+# for game in games:
+#     find_category_2_patterns(5,game[2],game[0],get_top_winrate_games(5,3,category_1_patterns))
+# print(category_2_patterns)
+# print("\npattern 2 : ")
+# print(get_top_winrate_games(5,0,category_2_patterns),False)
 
-for game in games:
-    find_category_3_patterns(5,game[2],game[0],get_top_winrate_games(5,0,category_2_patterns))
-print(category_3_patterns)
-print("\npattern 3 : ")
-print(get_top_winrate_games(5,0,category_3_patterns),False)
+# for game in games:
+#     find_category_3_patterns(5,game[2],game[0],get_top_winrate_games(5,0,category_2_patterns))
+# print(category_3_patterns)
+# print("\npattern 3 : ")
+# print(get_top_winrate_games(5,0,category_3_patterns),False)
