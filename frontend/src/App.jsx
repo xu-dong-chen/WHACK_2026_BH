@@ -3,6 +3,7 @@ import './App.css'
 
 function App() {
   const [selectedFile, setSelectedFile] = useState(null);
+  const [results,setResults] = useState([])
 	const onFileChange = (event) => {
     const file = event.target.files[0];
 
@@ -30,6 +31,9 @@ function App() {
 									});
 
 			alert("File uploaded")
+
+			const data = await response.json();
+			setResults(data.results);
 		} catch (error){
 			console.error(error)
 			alert("Error with uploading the file")
@@ -38,13 +42,38 @@ function App() {
 
 
   return (
-    <div>
-    	<div className='dataset'>
-			<input type="file" accept=".pgn" onChange={onFileChange} />
-			<button onClick={onFileUpload}>Upload</button>
-		</div>
+	<div className="app-layout">
 
-		<h1>Top Patterns Found</h1>
+        {/* LEFT SIDEBAR */}
+        <aside className="pattern-sidebar">
+            <h2>Top Patterns</h2>
+
+            {results.length === 0 ? (
+                <p>No patterns found yet.</p>
+            ) : (
+                results.map((item, index) => (
+                    <div className="pattern-entry" key={index}>
+                        <h4>Pattern #{index + 1}</h4>
+
+                        <p>
+                            {JSON.stringify(item.pattern)}
+                        </p>
+
+                        <p>
+                            Win rate: {(item.win_rate * 100).toFixed(2)}%
+                        </p>
+                    </div>
+                ))
+            )}
+        </aside>
+
+		<div className='uploading'>
+			<h2>Upload PGN Files</h2>
+			<div className='dataset'>
+				<input type="file" accept=".pgn" onChange={onFileChange} />
+				<button onClick={onFileUpload}>Upload</button>
+			</div>
+		</div>
 		
   	</div>
   );

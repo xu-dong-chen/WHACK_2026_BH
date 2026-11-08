@@ -2,7 +2,7 @@ import chess.pgn
 from pathlib import Path
 
 def getGames():
-    pgn_path = Path(__file__).resolve().parent.parent / "dataset" / "temp.pgn" # opens the dataset file NEED TO CHANGE TEMP.PGN
+    pgn_path = Path(__file__).resolve().parent.parent / "dataset" / "dataset.pgn" # opens the dataset file NEED TO CHANGE TEMP.PGN
     with open(pgn_path, encoding="utf-8") as pgn:
     
         games = [] # stores all the games and results each element is a tuple (moves,result)
