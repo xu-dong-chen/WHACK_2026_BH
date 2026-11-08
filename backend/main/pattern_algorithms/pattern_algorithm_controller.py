@@ -21,11 +21,11 @@ def get_real_patterns():
     for game in training_games:
         find_category_1_patterns(3, game[2], game[0])
     for game in training_games:
-        find_category_2_patterns(3, game[2], game[0], get_top_winrate_games(100, len(training_games) * 2 // 100, category_1_patterns, False))
+        find_category_2_patterns(3, game[2], game[0], get_top_winrate_games(25, len(training_games) * 2 // 100, category_1_patterns, False))
     for game in training_games:
-        find_category_3_patterns(3, game[2], game[0], get_top_winrate_games(100, len(training_games) * 5 // 1000, category_2_patterns, False))
+        find_category_3_patterns(3, game[2], game[0], get_top_winrate_games(25, len(training_games) * 5 // 1000, category_2_patterns, False))
 
-    top_patterns = get_top_winrate_games(100, len(training_games) * 5 // 10000, category_3_patterns, False)
+    top_patterns = get_top_winrate_games(25, len(training_games) * 5 // 10000, category_3_patterns, False)
 
     print(top_patterns)
 
@@ -42,7 +42,7 @@ def get_real_patterns():
         training_win_rate = training_wins / training_frequency
         validation_win_rate = validation_wins / validation_frequency
 
-        if validation_win_rate > 0.5 and training_frequency > 2:
+        if validation_win_rate > 0.5 and abs(validation_win_rate - training_win_rate) < 0.2:
             results.append([pattern, validation_win_rate])
         # results.append([pattern, training_win_rate])
 
