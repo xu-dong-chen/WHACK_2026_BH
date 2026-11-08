@@ -1,4 +1,9 @@
 from ..parser import getGames
+from .get_top_win_rates import get_top_winrate_games
+from .pattern_algorithm_2 import find_category_2_patterns
+from .pattern_algorithm_2 import category_2_patterns
+from .pattern_algorithm_3 import find_category_3_patterns
+from .pattern_algorithm_3 import category_3_patterns
 
 # category 1 in form (P, R, N, B, Q, K, O, =)
 category_1_patterns = {}
@@ -55,3 +60,16 @@ games = getGames()
 for game in games:
     find_category_1_pattern(5,game[2],game[0])
 print(category_1_patterns)
+print(get_top_winrate_games(5,3,category_1_patterns))
+
+for game in games:
+    find_category_2_patterns(5,game[2],game[0],get_top_winrate_games(5,3,category_1_patterns))
+print(category_2_patterns)
+print("\npattern 2 : ")
+print(get_top_winrate_games(5,0,category_2_patterns))
+
+for game in games:
+    find_category_3_patterns(5,game[2],game[0],get_top_winrate_games(5,0,category_2_patterns))
+print(category_3_patterns)
+print("\npattern 3 : ")
+print(get_top_winrate_games(5,0,category_3_patterns))

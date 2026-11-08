@@ -1,5 +1,5 @@
 category_2_patterns = {}
-def find_category_2_pattern(size, result, moves, top_patterns):
+def find_category_2_patterns(size, result, moves, top_patterns):
 
     added_patterns = set() # unique patterns should only be counted once
     number_of_moves = len(moves)
@@ -7,7 +7,7 @@ def find_category_2_pattern(size, result, moves, top_patterns):
     if size > number_of_moves:
         return
 
-    top_keys = {item[0] for item in top_keys}
+    #top_keys = {item[0] for item in top_keys}
 
     cat_1_pattern = {}
 
@@ -18,7 +18,7 @@ def find_category_2_pattern(size, result, moves, top_patterns):
 
         cat_1_pattern_key = tuple(sorted(cat_1_pattern.items()))
 
-        if cat_1_pattern_key in top_keys:
+        if cat_1_pattern_key in top_patterns:
 
             ordered_pattern_key = tuple(move[0] for move in moves[l:l+size])
 
