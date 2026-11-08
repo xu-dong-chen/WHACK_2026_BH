@@ -1,6 +1,6 @@
 import heapq
 
-def get_top_winrate_games(num, minimum_games, category_patterns):
+def get_top_winrate_games(num, minimum_games, category_patterns, include_win_rate):
 
     sorted_patterns = [] # tuple(win_rate, pattern) win rate first to sort it by win rate
 
@@ -18,4 +18,9 @@ def get_top_winrate_games(num, minimum_games, category_patterns):
         elif win_rate > sorted_patterns[0][0]:
             heapq.heapreplace(sorted_patterns,(win_rate,pattern))
 
-    return [pattern for win_rate,pattern in sorted(sorted_patterns, reverse=True)]
+    sorted_patterns = sorted(sorted_patterns, reverse=True)
+
+    if include_win_rate:
+        return sorted_patterns
+
+    return [pattern for win_rate,pattern in sorted_patterns]

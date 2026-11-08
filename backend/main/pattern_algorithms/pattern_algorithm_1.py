@@ -60,16 +60,16 @@ games = getGames()
 for game in games:
     find_category_1_pattern(5,game[2],game[0])
 print(category_1_patterns)
-print(get_top_winrate_games(5,3,category_1_patterns))
+print(get_top_winrate_games(5,3,category_1_patterns),False)
 
 for game in games:
     find_category_2_patterns(5,game[2],game[0],get_top_winrate_games(5,3,category_1_patterns))
 print(category_2_patterns)
 print("\npattern 2 : ")
-print(get_top_winrate_games(5,0,category_2_patterns))
+print(get_top_winrate_games(5,0,category_2_patterns),False)
 
 for game in games:
     find_category_3_patterns(5,game[2],game[0],get_top_winrate_games(5,0,category_2_patterns))
 print(category_3_patterns)
 print("\npattern 3 : ")
-print(get_top_winrate_games(5,0,category_3_patterns))
+print(get_top_winrate_games(5,0,category_3_patterns),False)
