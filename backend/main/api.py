@@ -1,6 +1,7 @@
 from fastapi import FastAPI, UploadFile, File
 from fastapi.middleware.cors import CORSMiddleware
 from pathlib import Path
+from .pattern_algorithms.pattern_algorithm_controller import get_real_patterns
 import shutil
 
 app = FastAPI()
@@ -20,10 +21,10 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-@app.get("/top-win-rates")
-def getTopWinRates():
-    #results = call some function
-    return {"results": 0}
+# @app.get("/top-win-rates")
+# def getTopWinRates():
+#     results = get_real_patterns()
+#     return {"results": results}
 
 UPLOAD_DIR = Path("backend/dataset")
 UPLOAD_DIR.mkdir(exist_ok = True)
@@ -31,7 +32,12 @@ UPLOAD_DIR.mkdir(exist_ok = True)
 @app.post("/upload-file")
 async def uploadFile(file: UploadFile):
 
-    file_path = UPLOAD_DIR / "dataset.pgn"
+    file_path = UPLOAD_DIR / "game.pgn"
 
     with open(file_path,"wb") as buffer:
         shutil.copyfileobj(file.file, buffer)
+
+    results = get_real_patterns()
+    print("hello")
+    print(results)
+    return {"results": results}

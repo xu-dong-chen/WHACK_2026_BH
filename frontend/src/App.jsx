@@ -31,9 +31,9 @@ function App() {
 									});
 
 			alert("File uploaded")
-
 			const data = await response.json();
 			setResults(data.results);
+			alert("RAN");
 		} catch (error){
 			console.error(error)
 			alert("Error with uploading the file")
@@ -56,11 +56,11 @@ function App() {
                         <h4>Pattern #{index + 1}</h4>
 
                         <p>
-                            {JSON.stringify(item.pattern)}
+                            {JSON.stringify(item[0])}
                         </p>
 
                         <p>
-                            Win rate: {(item.win_rate * 100).toFixed(2)}%
+                            Win rate: {(item[1] * 100).toFixed(2)}%
                         </p>
                     </div>
                 ))
